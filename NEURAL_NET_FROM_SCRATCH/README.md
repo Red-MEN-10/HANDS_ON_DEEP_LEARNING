@@ -14,7 +14,7 @@ I will drop some useful links that helped me to visualize and develop this NEURA
 
 I am also dropping the interactive infographic that is displayed in this README file 
 
-👉 [View interactive version](infographic.html)
+👉 [View interactive version](https://red-men-10.github.io/HANDS_ON_DEEP_LEARNING/)
 
 
 
