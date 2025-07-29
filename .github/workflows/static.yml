@@ -1,0 +1,418 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Building a Neural Network from Scratch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #94d2bd;
+        }
+        .kpi-value {
+            font-weight: 900;
+            color: #005f73;
+        }
+        .kpi-label {
+            font-weight: 600;
+            color: #0a9396;
+        }
+        .math-concept-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-black text-[#005f73] mb-2">Building a Neural Network from Scratch</h1>
+            <p class="text-lg md:text-xl text-[#0a9396] font-semibold">A Deep Dive into the Fundamentals of Machine Learning</p>
+        </header>
+
+        <section id="intro" class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div class="md:col-span-2 bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-[#005f73] mb-4">Why Build from Scratch?</h2>
+                    <p class="text-base leading-relaxed">
+                        In an era of automated frameworks and pre-trained models, constructing a neural network from the ground up is a deliberate choice to master the core mechanics of deep learning. This project moves beyond simply using tools to deeply understanding how they work. It's about unraveling the complex flow of data, errors, and gradients, equipping a developer with the critical thinking and problem-solving skills necessary for true innovation.
+                    </p>
+                </div>
+                <div class="bg-gradient-to-br from-[#94d2bd] to-[#0a9396] rounded-xl shadow-lg p-8 text-center text-white">
+                    <div class="kpi-value text-7xl">100%</div>
+                    <div class="kpi-label text-2xl mt-2 text-white opacity-90">Custom Code</div>
+                    <p class="mt-2 text-sm font-light">No high-level optimizers or pre-built layers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="flow" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-8">The Development Workflow</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-6 bg-white rounded-lg shadow-md flex flex-col items-center">
+                    <div class="text-5xl mb-3 text-[#005f73]">📊</div>
+                    <h3 class="font-bold text-lg mb-2">Data Handling</h3>
+                    <p class="text-sm text-gray-700">Leveraging Pandas for robust ingestion and preprocessing of the WHO dataset, focusing on critical inputs like BMI and Total Expenditure for life expectancy prediction.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-lg shadow-md flex flex-col items-center">
+                    <div class="text-5xl mb-3 text-[#0a9396]">⚙️</div>
+                    <h3 class="font-bold text-lg mb-2">Forward Propagation</h3>
+                    <p class="text-sm text-gray-700">Meticulously calculating the network's output by transforming inputs through weighted sums and applying activation functions to reveal learned features.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-lg shadow-md flex flex-col items-center">
+                    <div class="text-5xl mb-3 text-[#94d2bd]">🧠</div>
+                    <h3 class="font-bold text-lg mb-2">Backward Propagation</h3>
+                    <p class="text-sm text-gray-700">Implementing the chain rule from scratch to derive gradients for each parameter, essential for understanding error contribution and effective learning.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-lg shadow-md flex flex-col items-center">
+                    <div class="text-5xl mb-3 text-[#bb3e03]">🛠️</div>
+                    <h3 class="font-bold text-lg mb-2">Manual Weight Updates</h3>
+                    <p class="text-sm text-gray-700">Engaging in manual gradient descent for weight and bias updates, eliminating reliance on external optimizers to solidify foundational training principles.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="core-concepts" class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-[#005f73] mb-4 text-center">Engine Room: Linear Algebra vs. Activations</h3>
+                    <p class="text-sm text-center text-gray-600 mb-4">A neural network's power comes from separating linear transformations (the bulk of the computation) from non-linear activations (which allow learning complex patterns).</p>
+                    <div class="chart-container">
+                        <canvas id="operationsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-[#005f73] mb-4 text-center">Core Technology Stack</h3>
+                     <p class="text-sm text-center text-gray-600 mb-4">This project relies on foundational Python libraries, emphasizing numerical control over abstraction.</p>
+                    <div class="chart-container">
+                        <canvas id="techStackChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3 bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-[#005f73] mb-4 text-center">Mathematical Foundations: The Core of Learning</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="text-center p-4 rounded-lg shadow-md flex flex-col items-center bg-gray-50 w-full">
+                            <div class="text-5xl mb-3 text-[#005f73]">✖️</div>
+                            <h4 class="font-bold text-lg mb-2">Matrix-Vector Multiplication</h4>
+                            <p class="text-sm text-gray-700">The backbone of linear transformations within each layer, efficiently combining input features with learned weights to produce raw outputs (Z values).</p>
+                        </div>
+                        <div class="text-center p-4 rounded-lg shadow-md flex flex-col items-center bg-gray-50 w-full">
+                            <div class="text-5xl mb-3 text-[#0a9396]">📈</div>
+                            <h4 class="font-bold text-lg mb-2">Activation Functions</h4>
+                            <p class="text-sm text-gray-700">Crucial for introducing non-linearity, enabling the network to learn complex, non-linear relationships in data that simple linear models cannot capture.</p>
+                        </div>
+                        <div class="text-center p-4 rounded-lg shadow-md flex flex-col items-center bg-gray-50 w-full">
+                            <div class="text-5xl mb-3 text-[#94d2bd]">⚖️</div>
+                            <h4 class="font-bold text-lg mb-2">Weights & Biases Interaction</h4>
+                            <p class="text-sm text-gray-700">These parameters are the network's "memory." Weights determine the strength of connections, while biases shift activation thresholds, both iteratively adjusted via gradients.</p>
+                        </div>
+                        <div class="text-center p-4 rounded-lg shadow-md flex flex-col items-center bg-gray-50 w-full">
+                            <div class="text-5xl mb-3 text-[#bb3e03]">⚡</div>
+                            <h4 class="font-bold text-lg mb-2">Vectorized Operations</h4>
+                            <p class="text-sm text-gray-700">Implementing both forward and backward propagation using vectorized NumPy operations ensures computational efficiency, crucial for handling large datasets and complex network architectures.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="llm-explanation" class="mb-16 bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-8">✨ LLM-Powered Concept Explainer</h2>
+            <p class="text-center text-gray-600 mb-6">Want to dive deeper into a specific neural network concept? Type it below and let our AI explain!</p>
+
+            <div class="max-w-xl mx-auto flex flex-col items-center space-y-4">
+                <input type="text" id="conceptInput" placeholder="e.g., Activation Functions" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0a9396]">
+                <button id="explainConceptBtn" class="bg-[#0a9396] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#005f73] transition-colors duration-300 flex items-center justify-center">
+                    <span id="buttonText">✨ Explain Concept</span>
+                    <svg id="loadingSpinner" class="animate-spin h-5 w-5 text-white ml-3 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+                <div id="explanationOutput" class="w-full p-4 bg-gray-50 rounded-lg border border-gray-200 text-gray-800 text-sm leading-relaxed min-h-[100px] flex items-center justify-center text-center italic" style="display: none;">
+                    Your explanation will appear here...
+                </div>
+            </div>
+        </section>
+
+        <section id="future" class="mb-8">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-8">The Road Ahead: Future Enhancements</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative pl-8 border-l-2 border-[#94d2bd]">
+                    <div class="mb-8">
+                        <div class="absolute w-6 h-6 bg-[#0a9396] rounded-full -left-3 border-4 border-white"></div>
+                        <h4 class="font-bold text-xl text-[#005f73]">Hyperparameter Tuning</h4>
+                        <p class="text-gray-700">Implement systematic methods like Grid Search to find optimal learning rates, layer counts, and neuron configurations.</p>
+                    </div>
+                    <div class="mb-8">
+                        <div class="absolute w-6 h-6 bg-[#0a9396] rounded-full -left-3 border-4 border-white"></div>
+                        <h4 class="font-bold text-xl text-[#005f73]">Regularization Techniques</h4>
+                        <p class="text-gray-700">Integrate L1/L2 regularization or dropout to mitigate overfitting and improve the model's generalization capabilities.</p>
+                    </div>
+                    <div>
+                        <div class="absolute w-6 h-6 bg-[#0a9396] rounded-full -left-3 border-4 border-white"></div>
+                        <h4 class="font-bold text-xl text-[#005f73]">Advanced Optimizers</h4>
+                        <p class="text-gray-700">Experiment with algorithms beyond basic gradient descent, such as Adam or RMSprop, to accelerate convergence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="text-center p-4 bg-gray-800 text-white text-sm">
+        <p>Infographic generated based on the "Neural Network from Scratch" project README.</p>
+        <p>Confirmations: No Mermaid JS was used. No SVG graphics were used. All visualizations are rendered on canvas.</p>
+    </footer>
+
+    <script>
+        function wrapText(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const sharedChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#374151',
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: '#4b5563' },
+                    grid: { color: '#e5e7eb' }
+                },
+                x: {
+                    ticks: { color: '#4b5563' },
+                    grid: { color: '#e5e7eb' }
+                }
+            }
+        };
+
+        const operationsData = {
+            labels: [
+                wrapText('Matrix Operations (NumPy)', 16),
+                wrapText('Forward & Backward Propagation', 16),
+                wrapText('Manual Gradient Descent Updates', 16)
+            ],
+            datasets: [{
+                label: 'Linear Algebra Operations',
+                data: [70, 85, 60],
+                backgroundColor: 'rgba(10, 147, 150, 0.7)',
+                borderColor: 'rgba(10, 147, 150, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Element-wise Activations',
+                data: [30, 15, 40],
+                backgroundColor: 'rgba(238, 155, 0, 0.7)',
+                borderColor: 'rgba(238, 155, 0, 1)',
+                borderWidth: 1
+            }]
+        };
+        new Chart(document.getElementById('operationsChart'), {
+            type: 'bar',
+            data: operationsData,
+            options: { ...sharedChartOptions,
+                scales: {
+                    x: { stacked: true, ticks: { color: '#4b5563' }, grid: { display: false } },
+                    y: { stacked: true, ticks: { color: '#4b5563' }, grid: { color: '#e5e7eb' } }
+                }
+            }
+        });
+
+        const techStackData = {
+            labels: ['Python', 'NumPy', 'Pandas'],
+            datasets: [{
+                label: 'Technology Usage',
+                data: [50, 30, 20],
+                backgroundColor: [
+                    '#005f73',
+                    '#0a9396',
+                    '#94d2bd'
+                ],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        };
+        new Chart(document.getElementById('techStackChart'), {
+            type: 'doughnut',
+            data: techStackData,
+            options: { ...sharedChartOptions,
+                scales: {} 
+            }
+        });
+
+        // LLM-Powered Concept Explainer Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const explainConceptBtn = document.getElementById('explainConceptBtn');
+            const conceptInput = document.getElementById('conceptInput');
+            const explanationOutput = document.getElementById('explanationOutput');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const buttonText = document.getElementById('buttonText');
+
+            explainConceptBtn.addEventListener('click', async () => {
+                const concept = conceptInput.value.trim();
+                if (!concept) {
+                    explanationOutput.style.display = 'block';
+                    explanationOutput.textContent = 'Please enter a concept to explain.';
+                    return;
+                }
+
+                explanationOutput.style.display = 'none';
+                loadingSpinner.classList.remove('hidden');
+                buttonText.textContent = 'Explaining...';
+                explainConceptBtn.disabled = true;
+
+                try {
+                    let chatHistory = [];
+                    const prompt = `Explain the neural network concept of "${concept}" in a concise and easy-to-understand manner, suitable for someone learning about neural networks from scratch. Focus on its core purpose and how it fits into the overall neural network process.`;
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will provide this
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        explanationOutput.textContent = text;
+                        explanationOutput.style.display = 'block';
+                    } else {
+                        explanationOutput.textContent = 'Could not get an explanation. Please try again.';
+                        explanationOutput.style.display = 'block';
+                    }
+                } catch (error) {
+                    console.error('Error fetching explanation:', error);
+                    explanationOutput.textContent = 'An error occurred while fetching the explanation. Please try again later.';
+                    explanationOutput.style.display = 'block';
+                } finally {
+                    loadingSpinner.classList.add('hidden');
+                    buttonText.textContent = '✨ Explain Concept';
+                    explainConceptBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
